@@ -19,11 +19,14 @@ namespace TaskTrackerView
         public new IUnityContainer Container { get; set; }
         public int Id { set { id = value; } }
         private readonly TaskLogic _logicT;
+        private readonly ProjectLogic _logicP;
         private int? id;
-        public FormTasks(TaskLogic logicT)
+        public Dictionary<int?, (string, DateTime, DateTime, string, string, string)> Tasks;
+        public FormTasks(TaskLogic logicT, ProjectLogic logicP)
         {
             InitializeComponent();
             _logicT = logicT;
+            _logicP = logicP;
         }
 
         private void buttonComment_Click(object sender, EventArgs e)
@@ -45,17 +48,41 @@ namespace TaskTrackerView
             {
                 try
                 {
-                    var view = _logicT.Read(new TaskBindingModel { Id = id })?[0];
-                    if (view != null)
+                    var listP = _logicP.Read(new ProjectBindingModel { Id = id });
+                    if (listP != null)
                     {
-                        dataGridView.DataSource = view;
+                            Tasks = listP[0].Tasks;
+                           
+                        try
+                        {
+                            if (Tasks != null)
+                            {
+                                dataGridView.Rows.Clear();
+                                foreach (var pc in Tasks)
+                                {
+                                    dataGridView.Rows.Add(new object[] { pc.Key, pc.Value.Item1, pc.Value.Item2, pc.Value.Item3, pc.Value.Item4, pc.Value.Item5 });
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
+
+
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
+                   MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

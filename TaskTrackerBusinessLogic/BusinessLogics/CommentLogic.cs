@@ -26,7 +26,7 @@ namespace TaskTrackerBusinessLogic.BusinessLogics
             {
                 return new List<CommentViewModel> { _commentStorage.GetElement(model) };
             }
-            return _commentStorage.GetFilteredList(model);
+            return _commentStorage.GetFullList();
         }
 
         public void CreateOrUpdate(CommentBindingModel model)
@@ -37,7 +37,7 @@ namespace TaskTrackerBusinessLogic.BusinessLogics
             }); ;
             if (element != null && element.Id != model.Id)
             {
-                throw new Exception("Уже есть такая задача");
+                throw new Exception("Уже есть такой комментарий");
             }
             if (model.Id.HasValue)
             {
@@ -56,7 +56,7 @@ namespace TaskTrackerBusinessLogic.BusinessLogics
             });
             if (element == null)
             {
-                throw new Exception("Задача не найдена");
+                throw new Exception("Комментарий не найден");
             }
             _commentStorage.Delete(model);
         }

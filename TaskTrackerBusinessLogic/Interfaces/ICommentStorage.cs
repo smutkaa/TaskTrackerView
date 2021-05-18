@@ -10,8 +10,6 @@ namespace TaskTrackerBusinessLogic.Interfaces
     {
         List<CommentViewModel> GetFullList();
 
-        List<CommentViewModel> GetFilteredList(CommentBindingModel model);
-
         CommentViewModel GetElement(CommentBindingModel model);
 
         void Insert(CommentBindingModel model);

@@ -13,6 +13,6 @@ namespace TaskTrackerBusinessLogic.BindingModels
         public int? Clientid { get; set; }
         public Dictionary<int?, int?> TaskodProject { get; set; }
 
-        public Dictionary<int?, (string, DateTime, DateTime?, string, string, string)> Tasks { get; set; }
+        public Dictionary<int?, (string, DateTime, DateTime, string, string, string)> Tasks { get; set; }
     }
 }

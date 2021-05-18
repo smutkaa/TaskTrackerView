@@ -41,14 +41,16 @@ namespace TaskTrackerView
             currentContainer.RegisterType<ITaskStorage, TaskStorage>(new
           HierarchicalLifetimeManager());
             currentContainer.RegisterType<ITaskProjectStorage, TaskofprojectStorage>(new HierarchicalLifetimeManager());
-          
+            currentContainer.RegisterType<ICommentStorage, CommentsStorage>(new HierarchicalLifetimeManager());
+
 
             currentContainer.RegisterType<UserLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<CustomerLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<ProjectLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<TaskLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<TaskofprojectLogic>(new HierarchicalLifetimeManager());
-       
+            currentContainer.RegisterType<CommentLogic>(new HierarchicalLifetimeManager());
+
             return currentContainer;
         }
     }

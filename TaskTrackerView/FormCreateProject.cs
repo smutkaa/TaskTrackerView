@@ -20,11 +20,11 @@ namespace TaskTrackerView
         public new IUnityContainer Container { get; set; }
         private ProjectLogic _logicP { get; set; }
         private TaskLogic _logicT { get; set; }
-        public int? Id { set { id = value; } }
+        public int? Id { set { id = value; } get { return id; } }
         private int? id;
-        public int? IdClient { set { idClient = value; } }
+        public int? IdClient { set { idClient = value; } get { return id; } }
         private int? idClient;
-        public Dictionary<int?, (string, DateTime, DateTime?, string, string, string)> Tasks;
+        public Dictionary<int?, (string, DateTime, DateTime, string, string, string)> Tasks;
 
         public FormCreateProject(TaskLogic logicT, ProjectLogic logicP)
         {
@@ -46,7 +46,7 @@ namespace TaskTrackerView
             if (dataGridViewTask.SelectedRows.Count == 1)
             {
                 var form = Container.Resolve<FormTaskAdd>();
-               // form.Id = Convert.ToInt32(dataGridViewTask.SelectedRows[0].Cells[0].Value);
+                form.Id = Convert.ToInt32(dataGridViewTask.SelectedRows[0].Cells[0].Value);
                 if (form.ShowDialog() == DialogResult.OK)
                 {
                     LoadData();

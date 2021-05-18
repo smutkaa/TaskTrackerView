@@ -16,5 +16,10 @@ namespace TaskTrackerView
         {
             InitializeComponent();
         }
+
+        private void buttonCreate_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

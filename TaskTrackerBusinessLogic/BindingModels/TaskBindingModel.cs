@@ -10,7 +10,7 @@ namespace TaskTrackerBusinessLogic.BindingModels
         public int? Id { get; set; }
         public string Name { get; set; }
         public DateTime StartDate { get; set; }
-        public DateTime? EndDate { get; set; }
+        public DateTime EndDate { get; set; }
         public string Text { get; set; }
         public int? Projectid { get; set; }
         public int? ImplementerId { get; set; }

@@ -84,8 +84,9 @@ namespace TaskTrackerView
             {
                 var form = Container.Resolve<FormCreateProject>();
                 int idP = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
-                form.Id = idP;
-                form.IdClient = id;
+
+                if (form.Id != idP) { form.Id = idP; }
+                if (form.IdClient != id) { form.IdClient = id; }
                 if (form.ShowDialog() == DialogResult.OK)
                 {
                     LoadData();

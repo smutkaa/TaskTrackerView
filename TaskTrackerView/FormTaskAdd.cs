@@ -38,6 +38,7 @@ namespace TaskTrackerView
             {
                 TaskBindingModel taskModel = new TaskBindingModel
                 {
+                    Id=id,
                     Name = textBoxName.Text,
                     StartDate = dateTimePickerFrom.Value,
                     EndDate = dateTimePickerTo.Value,
@@ -85,6 +86,10 @@ namespace TaskTrackerView
                     if (listP[0] != null)
                     {
                         textBoxName.Text = listP[0].Name;
+                        dateTimePickerFrom.Value = listP[0].StartDate.Date;
+                        dateTimePickerTo.Value = listP[0].EndDate.Date;
+                        comboBoxPriority.Text = listP[0].Priority;
+                        richTextBoxComment.Text = listP[0].Text;
                     }
                 }
                 catch (Exception ex)

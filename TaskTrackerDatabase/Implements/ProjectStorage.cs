@@ -47,7 +47,8 @@ namespace TaskTrackerDatabase.Implements
             using (var context = new TaskTrackerContext())
             {
                 var project = context.Project
-              
+               .Include(x => x.Taskofproject)
+                .ThenInclude(rec => rec.Task)
                 .FirstOrDefault(rec => rec.Projectid == model.Id);
                 return project != null ?
                CreateModel(project, new TaskTrackerContext()) :
@@ -126,17 +127,7 @@ namespace TaskTrackerDatabase.Implements
             project.Price = model.Price;
             project.Deadline = model.Deadline;
             project.Customerid = model.Clientid;
-            using (var context = new TaskTrackerContext())
-            {
-                if (model.TaskodProject == null)
-                {
-                    model.TaskodProject = context.Taskofproject.ToDictionary(x => x.Projectid, x => x.Taskid);
-                }
-                model.Tasks = context.Taskofproject.Where(x => x.Projectid == project.Projectid)
-                  .ToDictionary(rec => rec.Task.Taskid, recPC => (recPC.Task.Name, recPC.Task.Startdate, recPC.Task.Enddate, recPC.Task.Text,
-                   recPC.Task.Priority, recPC.Task.State));
-                
-            }
+           
             return project;
         }
 
@@ -149,13 +140,6 @@ namespace TaskTrackerDatabase.Implements
             model.Price = project.Price;
             model.Deadline = project.Deadline;
             model.Clientid = project.Customerid;
-                if (model.TaskodProject == null)
-                {
-                    model.TaskodProject = project.Taskofproject.ToDictionary(x => x.Projectid, x => x.Taskid);
-                }
-             model.Tasks = project.Taskofproject.Where(x => x.Projectid == project.Projectid)
-                  .ToDictionary(rec => rec.Task.Taskid, recPC => (recPC.Task.Name, recPC.Task.Startdate, recPC.Task.Enddate, recPC.Task.Text,
-                   recPC.Task.Priority, recPC.Task.State));
             return model;
         }
         private ProjectViewModel CreateModel(Project project, TaskTrackerContext context)
@@ -168,11 +152,17 @@ namespace TaskTrackerDatabase.Implements
             model.Deadline = project.Deadline;
             model.Clientid = project.Customerid;
       
-            if (model.TaskodProject == null)
+            if(model.TaskodProject == null)
             {
-                model.TaskodProject = context.Taskofproject.Where(x=>x.Projectid== project.Projectid).ToDictionary(x => x.Projectid, x => x.Taskid);
+                model.TaskodProject = context
+                .Taskofproject
+                .Where(x => x.Projectid == project.Projectid)
+                .ToDictionary(x => x.Projectid, x => x.Taskid);
             }
-            model.Tasks = context
+            
+                
+            
+            model.Tasks = project
                .Taskofproject.Where(x => x.Projectid == project.Projectid)
               .ToDictionary(rec => rec.Task.Taskid, recPC => (recPC.Task.Name, recPC.Task.Startdate, recPC.Task.Enddate, recPC.Task.Text,
                recPC.Task.Priority, recPC.Task.State));

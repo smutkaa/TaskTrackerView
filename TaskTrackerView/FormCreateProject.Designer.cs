@@ -41,6 +41,7 @@ namespace TaskTrackerView
             this.dataGridViewTask = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.textBoxPrice = new System.Windows.Forms.TextBox();
+            this.ColumnId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnStart = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnEnd = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -137,6 +138,7 @@ namespace TaskTrackerView
             this.dataGridViewTask.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dataGridViewTask.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewTask.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColumnId,
             this.ColumnName,
             this.ColumnStart,
             this.ColumnEnd,
@@ -162,6 +164,12 @@ namespace TaskTrackerView
             this.textBoxPrice.Name = "textBoxPrice";
             this.textBoxPrice.Size = new System.Drawing.Size(157, 20);
             this.textBoxPrice.TabIndex = 37;
+            // 
+            // ColumnId
+            // 
+            this.ColumnId.HeaderText = "ID";
+            this.ColumnId.Name = "ColumnId";
+            this.ColumnId.Visible = false;
             // 
             // ColumnName
             // 
@@ -228,6 +236,7 @@ namespace TaskTrackerView
         private System.Windows.Forms.DataGridView dataGridViewTask;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBoxPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnId;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnStart;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnEnd;

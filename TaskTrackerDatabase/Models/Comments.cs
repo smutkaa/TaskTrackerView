@@ -10,7 +10,7 @@ namespace TaskTrackerDatabase
 {
     public partial class Comments
     {
-        public int Commentid { get; set; }
+        public int? Commentid { get; set; }
         public string Text { get; set; }
         public BitArray Mark { get; set; }
         public int? Customerid { get; set; }

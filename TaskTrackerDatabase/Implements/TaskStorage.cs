@@ -33,10 +33,16 @@ namespace TaskTrackerDatabase.Implements
             using (var context = new TaskTrackerContext())
             {
                 return context.Tasks
-                   .Where(rec => (rec.Name == model.Name))
+                   .Where(rec => (rec.Name == model.Name && rec.Startdate == model.StartDate))
                     .Select(rec => new TaskViewModel
                     {
                         Id = rec.Taskid,
+                        StartDate = rec.Startdate,
+                        EndDate = rec.Enddate,
+                        Name = rec.Name,
+                        Text = rec.Text,
+                        State = rec.State,
+                        Priority = rec.Priority
                     }).ToList();
             }
         }

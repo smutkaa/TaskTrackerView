@@ -18,7 +18,7 @@ namespace TaskTrackerDatabase
         public int? Taskid { get; set; }
         public string Name { get; set; }
         public DateTime Startdate { get; set; }
-        public DateTime? Enddate { get; set; }
+        public DateTime Enddate { get; set; }
         public string Text { get; set; }
         public string State { get; set; }
         public string Priority { get; set; }
