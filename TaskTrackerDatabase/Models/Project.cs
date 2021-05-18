@@ -11,7 +11,7 @@ namespace TaskTrackerDatabase
     {
         public Project()
         {
-            Tasks = new HashSet<Tasks>();
+            Taskofproject = new HashSet<Taskofproject>();
         }
 
         public int? Projectid { get; set; }
@@ -21,6 +21,6 @@ namespace TaskTrackerDatabase
         public int? Customerid { get; set; }
 
         public virtual Customer Customer { get; set; }
-        public virtual ICollection<Tasks> Tasks { get; set; }
+        public virtual ICollection<Taskofproject> Taskofproject { get; set; }
     }
 }

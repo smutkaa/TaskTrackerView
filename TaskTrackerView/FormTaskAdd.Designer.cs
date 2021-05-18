@@ -35,7 +35,7 @@ namespace TaskTrackerView
             this.labelComment = new System.Windows.Forms.Label();
             this.labelPriority = new System.Windows.Forms.Label();
             this.comboBoxPriority = new System.Windows.Forms.ComboBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerTo = new System.Windows.Forms.DateTimePicker();
             this.labelTo = new System.Windows.Forms.Label();
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.labelName = new System.Windows.Forms.Label();
@@ -97,13 +97,13 @@ namespace TaskTrackerView
             this.comboBoxPriority.Size = new System.Drawing.Size(204, 21);
             this.comboBoxPriority.TabIndex = 46;
             // 
-            // dateTimePicker1
+            // dateTimePickerTo
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(125, 116);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(204, 20);
-            this.dateTimePicker1.TabIndex = 45;
-            this.dateTimePicker1.Value = new System.DateTime(2001, 7, 11, 0, 0, 0, 0);
+            this.dateTimePickerTo.Location = new System.Drawing.Point(125, 116);
+            this.dateTimePickerTo.Name = "dateTimePickerTo";
+            this.dateTimePickerTo.Size = new System.Drawing.Size(204, 20);
+            this.dateTimePickerTo.TabIndex = 45;
+            this.dateTimePickerTo.Value = new System.DateTime(2001, 7, 11, 0, 0, 0, 0);
             // 
             // labelTo
             // 
@@ -151,14 +151,14 @@ namespace TaskTrackerView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(419, 450);
+            this.ClientSize = new System.Drawing.Size(419, 435);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.richTextBoxComment);
             this.Controls.Add(this.labelComment);
             this.Controls.Add(this.labelPriority);
             this.Controls.Add(this.comboBoxPriority);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.dateTimePickerTo);
             this.Controls.Add(this.labelTo);
             this.Controls.Add(this.textBoxName);
             this.Controls.Add(this.labelName);
@@ -180,7 +180,7 @@ namespace TaskTrackerView
         private System.Windows.Forms.Label labelComment;
         private System.Windows.Forms.Label labelPriority;
         private System.Windows.Forms.ComboBox comboBoxPriority;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dateTimePickerTo;
         private System.Windows.Forms.Label labelTo;
         private System.Windows.Forms.TextBox textBoxName;
         private System.Windows.Forms.Label labelName;

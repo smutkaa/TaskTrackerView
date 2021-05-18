@@ -15,14 +15,16 @@ namespace TaskTrackerView
     public partial class FormTaskAdd : Form
     {
         private readonly TaskLogic _logicT;
+        private readonly TaskofprojectLogic _logicTP;
         public int? Id { set { id = value; } }
         private int? id;
 
-        public FormTaskAdd(TaskLogic logicT)
+        public FormTaskAdd(TaskLogic logicT, TaskofprojectLogic logicTP)
         {
             InitializeComponent();
             comboBoxPriority.Items.AddRange(new string[] { "Обычный", "Повышенный" });
             _logicT = logicT;
+            _logicTP = logicTP;
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
@@ -34,23 +36,36 @@ namespace TaskTrackerView
             }
             try
             {
-                TaskBindingModel model = new TaskBindingModel
+                TaskBindingModel taskModel = new TaskBindingModel
                 {
                     Name = textBoxName.Text,
-                   
+                    StartDate = dateTimePickerFrom.Value,
+                    EndDate = dateTimePickerTo.Value,
+                    Priority = comboBoxPriority.Text,
+                    Text= richTextBoxComment.Text
                 };
-                if (id.HasValue)
+                _logicT.CreateOrUpdate(taskModel);
+
+                var model = _logicT.Read(taskModel);
+
+                int ? IdTask= model[0].Id;
+
+                TaskofprojectBindingModel taskofprojectModel = new TaskofprojectBindingModel
                 {
-                    model.Id = id;
-                }
-                _logicT.CreateOrUpdate(model);
-                MessageBox.Show("Успешно", "Сохранено",
+                   Projectid=id,
+                   Taskid = IdTask
+                };
+                _logicTP.CreateOrUpdate(taskofprojectModel);
+              
+                MessageBox.Show("Регистрация прошло успешно", "Сообщение",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Close();
+                DialogResult = DialogResult.OK;
             }
+
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
             }
         }
 
@@ -67,7 +82,7 @@ namespace TaskTrackerView
                 try
                 {
                     var listP = _logicT.Read(new TaskBindingModel { Id = id });
-                    if (listP != null)
+                    if (listP[0] != null)
                     {
                         textBoxName.Text = listP[0].Name;
                     }

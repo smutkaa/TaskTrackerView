@@ -41,6 +41,11 @@ namespace TaskTrackerView
             this.dataGridViewTask = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.textBoxPrice = new System.Windows.Forms.TextBox();
+            this.ColumnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnStart = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnEnd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnText = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnPriority = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTask)).BeginInit();
             this.SuspendLayout();
             // 
@@ -131,6 +136,12 @@ namespace TaskTrackerView
             // 
             this.dataGridViewTask.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dataGridViewTask.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewTask.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColumnName,
+            this.ColumnStart,
+            this.ColumnEnd,
+            this.ColumnText,
+            this.ColumnPriority});
             this.dataGridViewTask.Location = new System.Drawing.Point(240, 67);
             this.dataGridViewTask.Name = "dataGridViewTask";
             this.dataGridViewTask.Size = new System.Drawing.Size(319, 240);
@@ -151,6 +162,31 @@ namespace TaskTrackerView
             this.textBoxPrice.Name = "textBoxPrice";
             this.textBoxPrice.Size = new System.Drawing.Size(157, 20);
             this.textBoxPrice.TabIndex = 37;
+            // 
+            // ColumnName
+            // 
+            this.ColumnName.HeaderText = "Название";
+            this.ColumnName.Name = "ColumnName";
+            // 
+            // ColumnStart
+            // 
+            this.ColumnStart.HeaderText = "Начало";
+            this.ColumnStart.Name = "ColumnStart";
+            // 
+            // ColumnEnd
+            // 
+            this.ColumnEnd.HeaderText = "Конец";
+            this.ColumnEnd.Name = "ColumnEnd";
+            // 
+            // ColumnText
+            // 
+            this.ColumnText.HeaderText = "Текст";
+            this.ColumnText.Name = "ColumnText";
+            // 
+            // ColumnPriority
+            // 
+            this.ColumnPriority.HeaderText = "Приоритет";
+            this.ColumnPriority.Name = "ColumnPriority";
             // 
             // FormCreateProject
             // 
@@ -192,5 +228,10 @@ namespace TaskTrackerView
         private System.Windows.Forms.DataGridView dataGridViewTask;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBoxPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnStart;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnEnd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnText;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPriority;
     }
 }

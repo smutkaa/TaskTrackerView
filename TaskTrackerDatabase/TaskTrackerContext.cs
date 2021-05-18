@@ -34,7 +34,7 @@ namespace TaskTrackerDatabase
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=TaskTracker;Username=postgres;Password=password");
+                optionsBuilder.UseNpgsql("Host=localhost; Port=5432; Database =TaskTracker; Username = postgres; Password =password");
             }
         }
 
@@ -189,22 +189,22 @@ namespace TaskTrackerDatabase
 
             modelBuilder.Entity<Taskofproject>(entity =>
             {
-                entity.HasNoKey();
-
                 entity.ToTable("taskofproject");
+
+                entity.Property(e => e.Taskofprojectid).HasColumnName("taskofprojectid");
 
                 entity.Property(e => e.Projectid).HasColumnName("projectid");
 
                 entity.Property(e => e.Taskid).HasColumnName("taskid");
 
                 entity.HasOne(d => d.Project)
-                    .WithMany()
+                    .WithMany(p => p.Taskofproject)
                     .HasForeignKey(d => d.Projectid)
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("projectidfk");
 
                 entity.HasOne(d => d.Task)
-                    .WithMany()
+                    .WithMany(p => p.Taskofproject)
                     .HasForeignKey(d => d.Taskid)
                     .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("taskidfk");
@@ -232,8 +232,6 @@ namespace TaskTrackerDatabase
                     .HasColumnName("priority")
                     .HasMaxLength(255);
 
-                entity.Property(e => e.Projectid).HasColumnName("projectid");
-
                 entity.Property(e => e.Startdate)
                     .HasColumnName("startdate")
                     .HasColumnType("date");
@@ -245,12 +243,6 @@ namespace TaskTrackerDatabase
                 entity.Property(e => e.Text)
                     .HasColumnName("text")
                     .HasMaxLength(1000);
-
-                entity.HasOne(d => d.Project)
-                    .WithMany(p => p.Tasks)
-                    .HasForeignKey(d => d.Projectid)
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("projectidfk");
             });
 
             modelBuilder.Entity<Users>(entity =>

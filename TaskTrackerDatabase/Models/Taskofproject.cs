@@ -9,9 +9,9 @@ namespace TaskTrackerDatabase
 {
     public partial class Taskofproject
     {
+        public int? Taskofprojectid { get; set; }
         public int? Projectid { get; set; }
         public int? Taskid { get; set; }
-
         public virtual Project Project { get; set; }
         public virtual Tasks Task { get; set; }
     }

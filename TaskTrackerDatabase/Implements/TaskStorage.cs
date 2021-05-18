@@ -7,7 +7,6 @@ using TaskTrackerBusinessLogic.Interfaces;
 using TaskTrackerBusinessLogic.ViewModels;
 using Microsoft.EntityFrameworkCore;
 
-
 namespace TaskTrackerDatabase.Implements
 {
     public class TaskStorage: ITaskStorage
@@ -49,11 +48,11 @@ namespace TaskTrackerDatabase.Implements
             }
             using (var context = new TaskTrackerContext())
             {
-                var task = context.Tasks.FirstOrDefault(rec => rec.Projectid == model.Id);
+                var task = context.Tasks
+                .FirstOrDefault(rec => rec.Taskid == model.Id);
                 return task != null ?
                 new TaskViewModel
                 {
-                    Projectid = task.Projectid,
                     Id=task.Taskid,
                     StartDate=task.Startdate,
                     EndDate = task.Enddate,
@@ -113,7 +112,6 @@ namespace TaskTrackerDatabase.Implements
             task.Enddate = model.EndDate;
             task.Name = model.Name;
             task.Text = model.Text;
-            task.Projectid = model.Id;
             task.State = model.State;
             task.Priority = model.Priority;
             return task;

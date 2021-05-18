@@ -22,6 +22,10 @@ namespace TaskTrackerView
         private TaskLogic _logicT { get; set; }
         public int? Id { set { id = value; } }
         private int? id;
+        public int? IdClient { set { idClient = value; } }
+        private int? idClient;
+        public Dictionary<int?, (string, DateTime, DateTime?, string, string, string)> Tasks;
+
         public FormCreateProject(TaskLogic logicT, ProjectLogic logicP)
         {
             InitializeComponent();
@@ -32,6 +36,7 @@ namespace TaskTrackerView
         private void buttonAdd_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormTaskAdd>();
+            form.Id = id;
             form.ShowDialog();
             LoadData();
         }
@@ -80,17 +85,16 @@ namespace TaskTrackerView
             }
             try
             {
+   
                 ProjectBindingModel model = new ProjectBindingModel
                 {
+                    Id = id,
                     Name = textBoxName.Text,
                     Deadline = dateTimePicker.Value,
                     Price = Convert.ToDecimal(textBoxPrice.Text),
-                    Clientid = id
+                    Clientid = idClient
                 };
-                if (id.HasValue)
-                {
-                    model.Clientid = id;
-                }
+                
                 _logicP.CreateOrUpdate(model);
                 MessageBox.Show("Успешно", "Сохранено",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -109,24 +113,41 @@ namespace TaskTrackerView
         }
         private void LoadData()
         {
+
+            try
+            {
+                if (Tasks != null)
+                {
+                    dataGridViewTask.Rows.Clear();
+                    foreach (var pc in Tasks)
+                    {
+                        dataGridViewTask.Rows.Add(new object[] { pc.Key, pc.Value.Item1, pc.Value.Item2, pc.Value.Item3, pc.Value.Item4, pc.Value.Item5 });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void FormCreateProject_Load(object sender, EventArgs e)
+        {
             if (id.HasValue)
             {
                 try
                 {
-                    var listP = _logicP.Read(new  ProjectBindingModel { Id = id });
+                    var listP = _logicP.Read(new ProjectBindingModel { Id = id });
                     if (listP != null)
                     {
                         textBoxName.Text = listP[0].Name;
-                        // dateTimePicker = System.DateTimePiker(listP[0].Deadline);
-                        //textBoxPrice = Convert.ToString(listP[0].Price);
+                        dateTimePicker.Value = listP[0].Deadline;
+                        textBoxPrice.Text = Convert.ToString(listP[0].Price);
+                        Tasks = listP[0].Tasks;
+                        LoadData();
                     }
-                    
-                    var listT = _logicT.Read(new TaskBindingModel { Projectid = id});
-                    if (listT != null)
-                    {
-                        dataGridViewTask.DataSource = listT;
-                        dataGridViewTask.Columns[0].Visible = false;
-                    }
+
+
                 }
                 catch (Exception ex)
                 {
@@ -134,11 +155,6 @@ namespace TaskTrackerView
                    MessageBoxIcon.Error);
                 }
             }
-        }
-
-        private void FormCreateProject_Load(object sender, EventArgs e)
-        {
-            LoadData();
         }
     }
 }

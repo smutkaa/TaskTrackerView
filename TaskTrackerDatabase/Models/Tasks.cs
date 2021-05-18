@@ -12,6 +12,7 @@ namespace TaskTrackerDatabase
         public Tasks()
         {
             Comments = new HashSet<Comments>();
+            Taskofproject = new HashSet<Taskofproject>();
         }
 
         public int? Taskid { get; set; }
@@ -19,11 +20,10 @@ namespace TaskTrackerDatabase
         public DateTime Startdate { get; set; }
         public DateTime? Enddate { get; set; }
         public string Text { get; set; }
-        public int? Projectid { get; set; }
         public string State { get; set; }
         public string Priority { get; set; }
 
-        public virtual Project Project { get; set; }
         public virtual ICollection<Comments> Comments { get; set; }
+        public virtual ICollection<Taskofproject> Taskofproject { get; set; }
     }
 }

@@ -34,6 +34,7 @@ namespace TaskTrackerView
         private void buttonCreate_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormCreateProject>();
+            form.IdClient = id;
             if (form.ShowDialog() == DialogResult.OK)
             {
                 LoadData();
@@ -46,6 +47,7 @@ namespace TaskTrackerView
             {
                 var form = Container.Resolve<FormTasks>();
                 form.Id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
+                
                 if (form.ShowDialog() == DialogResult.OK)
                 {
                     LoadData();  
@@ -58,13 +60,14 @@ namespace TaskTrackerView
             {
                 try
                 {
-                    
                     var view = _logicP.Read(new ProjectBindingModel { Clientid = id });
                     if (view != null)
                     {
                         dataGridView.DataSource = view;
                         dataGridView.Columns[0].Visible = false;
-                      
+                        dataGridView.Columns[4].Visible = false;
+                        dataGridView.Columns[5].Visible = false;
+
                     }
                 }
                 catch (Exception ex)
@@ -80,8 +83,9 @@ namespace TaskTrackerView
             if (dataGridView.SelectedRows.Count == 1)
             {
                 var form = Container.Resolve<FormCreateProject>();
-                int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
-                form.Id = id;
+                int idP = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
+                form.Id = idP;
+                form.IdClient = id;
                 if (form.ShowDialog() == DialogResult.OK)
                 {
                     LoadData();
@@ -92,6 +96,11 @@ namespace TaskTrackerView
         private void button3_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormReport>();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            LoadData();
         }
     }
 }

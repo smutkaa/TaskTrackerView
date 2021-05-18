@@ -28,22 +28,13 @@ namespace TaskTrackerBusinessLogic.BusinessLogics
             }
             if (model.Clientid.HasValue)
             {
-                return new List<ProjectViewModel> { _projectStorage.GetElement(model) };
+                return _projectStorage.GetFilteredList(model);
             }
             return _projectStorage.GetFilteredList(model);
         }
 
         public void CreateOrUpdate(ProjectBindingModel model)
         {
-            var element = _projectStorage.GetElement(new ProjectBindingModel
-            {
-                Name = model.Name,
-                Clientid = model.Clientid
-            }); ;
-            if (element != null && element.Id != model.Id)
-            {
-                throw new Exception("Уже есть такой проект");
-            }
             if (model.Id.HasValue)
             {
                 _projectStorage.Update(model);
