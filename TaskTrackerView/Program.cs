@@ -42,6 +42,7 @@ namespace TaskTrackerView
           HierarchicalLifetimeManager());
             currentContainer.RegisterType<ITaskProjectStorage, TaskofprojectStorage>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<ICommentStorage, CommentsStorage>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IReportStorage, ReportStorege>(new HierarchicalLifetimeManager());
 
 
             currentContainer.RegisterType<UserLogic>(new HierarchicalLifetimeManager());
@@ -50,6 +51,7 @@ namespace TaskTrackerView
             currentContainer.RegisterType<TaskLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<TaskofprojectLogic>(new HierarchicalLifetimeManager());
             currentContainer.RegisterType<CommentLogic>(new HierarchicalLifetimeManager());
+            currentContainer.RegisterType<ReportLogic>(new HierarchicalLifetimeManager());
 
             return currentContainer;
         }

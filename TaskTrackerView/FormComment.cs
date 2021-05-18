@@ -18,6 +18,8 @@ namespace TaskTrackerView
         private readonly CommentLogic _logicC;
         public int? Id { set { id = value; } }
         private int? id;
+        public int? Idclient { set { idcl = value; } }
+        private int? idcl;
 
         public FormComment(CommentLogic logicC)
         {
@@ -28,22 +30,17 @@ namespace TaskTrackerView
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            /*if (string.IsNullOrEmpty()
-            {
-                MessageBox.Show("Введите название проекта", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }*/
+           
             try
             {
                 CommentBindingModel model = new CommentBindingModel
                 {
-                   
-
+                    Mark = Convert.ToString(comboBoxMark.SelectedValue),
+                    Text = richTextBoxComment.Text,
+                    ClientId = idcl,
+                    TaskId = id
                 };
-                if (id.HasValue)
-                {
-                    model.Id = id;
-                }
+
                 _logicC.CreateOrUpdate(model);
                 MessageBox.Show("Успешно", "Сохранено",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);

@@ -31,14 +31,7 @@ namespace TaskTrackerBusinessLogic.BusinessLogics
 
         public void CreateOrUpdate(CommentBindingModel model)
         {
-            var element = _commentStorage.GetElement(new CommentBindingModel
-            {
-                
-            }); ;
-            if (element != null && element.Id != model.Id)
-            {
-                throw new Exception("Уже есть такой комментарий");
-            }
+            
             if (model.Id.HasValue)
             {
                 _commentStorage.Update(model);

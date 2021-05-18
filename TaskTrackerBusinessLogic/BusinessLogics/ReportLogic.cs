@@ -20,7 +20,7 @@ namespace TaskTrackerBusinessLogic.BusinessLogics
         {
             if (model == null)
                 return null;
-            if (!model.DateTo.HasValue || !model.DateFrom.HasValue)
+            if (!model.DateTo.HasValue)
                 return null;
             return storage.GetClientInfoFiltered(model);
 

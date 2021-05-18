@@ -38,7 +38,7 @@ namespace TaskTrackerView
             {
                 TaskBindingModel taskModel = new TaskBindingModel
                 {
-                    Id=id,
+                    
                     Name = textBoxName.Text,
                     StartDate = dateTimePickerFrom.Value,
                     EndDate = dateTimePickerTo.Value,
@@ -58,7 +58,7 @@ namespace TaskTrackerView
                 };
                 _logicTP.CreateOrUpdate(taskofprojectModel);
               
-                MessageBox.Show("Регистрация прошло успешно", "Сообщение",
+                MessageBox.Show("Успешно", "Сообщение",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;
             }

@@ -36,7 +36,7 @@ namespace TaskTrackerBusinessLogic.BusinessLogics
                 Name = model.Name,
                 Text = model.Text,
                 Projectid = model.Projectid
-            }); ;
+            }); 
             if (element != null && element.Id != model.Id)
             {
                 throw new Exception("Уже есть такая задача");

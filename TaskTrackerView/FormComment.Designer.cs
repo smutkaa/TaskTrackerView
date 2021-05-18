@@ -45,7 +45,7 @@ namespace TaskTrackerView
             this.buttonCancel.TabIndex = 49;
             this.buttonCancel.Text = "Отмена";
             this.buttonCancel.UseVisualStyleBackColor = true;
-            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
+          
             // 
             // buttonSave
             // 

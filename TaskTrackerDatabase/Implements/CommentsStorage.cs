@@ -90,9 +90,10 @@ namespace TaskTrackerDatabase.Implements
         {
             com.Commentid = model.Id;
             com.Text = model.Text;
-            //Mark = task.Mark,
             com.Customerid = model.ClientId;
             com.Taskid = model.TaskId;
+    
+            //Mark = task.Mark,
             return com;
         }
     }

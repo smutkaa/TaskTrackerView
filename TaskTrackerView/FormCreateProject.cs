@@ -20,9 +20,9 @@ namespace TaskTrackerView
         public new IUnityContainer Container { get; set; }
         private ProjectLogic _logicP { get; set; }
         private TaskLogic _logicT { get; set; }
-        public int? Id { set { id = value; } get { return id; } }
+        public int? Id { set { id = value; }  }
         private int? id;
-        public int? IdClient { set { idClient = value; } get { return id; } }
+        public int? IdClient { set { idClient = value; }}
         private int? idClient;
         public Dictionary<int?, (string, DateTime, DateTime, string, string, string)> Tasks;
 

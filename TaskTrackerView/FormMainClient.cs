@@ -65,8 +65,12 @@ namespace TaskTrackerView
                     {
                         dataGridView.DataSource = view;
                         dataGridView.Columns[0].Visible = false;
+                        dataGridView.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                        dataGridView.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                        dataGridView.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                         dataGridView.Columns[4].Visible = false;
                         dataGridView.Columns[5].Visible = false;
+                        dataGridView.Columns[6].Visible = false;
 
                     }
                 }
@@ -85,8 +89,8 @@ namespace TaskTrackerView
                 var form = Container.Resolve<FormCreateProject>();
                 int idP = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
 
-                if (form.Id != idP) { form.Id = idP; }
-                if (form.IdClient != id) { form.IdClient = id; }
+                 form.Id = idP; 
+                 form.IdClient = id; 
                 if (form.ShowDialog() == DialogResult.OK)
                 {
                     LoadData();
@@ -97,6 +101,11 @@ namespace TaskTrackerView
         private void button3_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormReport>();
+            form.IdClient = id; 
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                LoadData();
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)

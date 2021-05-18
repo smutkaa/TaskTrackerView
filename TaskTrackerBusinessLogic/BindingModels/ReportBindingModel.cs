@@ -6,10 +6,8 @@ namespace TaskTrackerBusinessLogic.BindingModels
 {
     public class ReportBindingModel
     {
+        public int? Id { get; set; }
         public int? ClientId { get; set; }
-
-        public DateTime? DateFrom { get; set; }
-
         public DateTime? DateTo { get; set; }
     }
 }
